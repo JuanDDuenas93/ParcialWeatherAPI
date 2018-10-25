@@ -85,7 +85,6 @@ public class Main {
     }
   }
   
-  @GetMapping()
-  public ResponseEntity<?> 
+  
 
 }
