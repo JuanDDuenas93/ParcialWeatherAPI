@@ -10,8 +10,8 @@
     </a>
     <h1>Weather Information</h1>
     <p>Please type in a City</p>
-    <input type="text" name="searchCity">
-    <a type="button" class="btn btn-lg btn-primary" href="" onclick=""><span class="glyphicon glyphicon-flash"></span>Get weather Info</a>
+    <input type="text" name="searchCity" id="cityToSearch">
+    <a type="button" class="btn btn-lg btn-primary" href="" onclick="weatherServices.getDataByCityName()"><span class="glyphicon glyphicon-flash"></span>Get weather Info</a>
   </div>
 </div>
 <div class="container">
@@ -35,6 +35,8 @@
     
   </div>
 </div>
-
+    <script src="../scripts/weatherAPI.js" type="text/javascript"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </body>
+ 
 </html>
