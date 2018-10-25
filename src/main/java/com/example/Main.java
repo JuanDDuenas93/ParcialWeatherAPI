@@ -101,7 +101,7 @@ public class Main {
     @GetMapping("/DataByCity")
     public ResponseEntity<?> getDataByCityHandler(@RequestParam String city) {
         try {
-            return new ResponseEntity<>(connectToExternalProvider(urlToExternalAPI+city+"&APPID="+keyAPI).toString(), HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(connectToExternalProvider(urlToExternalAPI+city+"&APPID="+keyAPI), HttpStatus.ACCEPTED);
 
         } catch (Exception ex) {
             return new ResponseEntity<>("Error", HttpStatus.NOT_FOUND);
@@ -109,7 +109,7 @@ public class Main {
         }
     }
     
-    private StringBuffer connectToExternalProvider(String url) throws MalformedURLException, IOException{
+    private String connectToExternalProvider(String url) throws MalformedURLException, IOException{
         URL obj = new URL(url);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
         con.setRequestMethod("GET");
@@ -131,12 +131,12 @@ public class Main {
             in.close();
 
             // print result
-            System.out.println(response.toString());
+            //System.out.println(response.toString());
         } else {
             System.out.println("GET request not worked");
         }
         
-        return response;
+        return response.toString();
     }
 
 }

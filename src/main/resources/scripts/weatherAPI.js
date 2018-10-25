@@ -12,9 +12,6 @@ var weatherServices = (function(){
             var url = "http://api.openweathermap.org/data/2.5/forecast?q=";
             var cityName = document.getElementById('cityToSearch').value;
             axios.get(url+cityName+"&APPID="+key).then(function (response){
-                alert("Data received");
-                console.log(response.date);
-                return response.data;
                 
             });
         }

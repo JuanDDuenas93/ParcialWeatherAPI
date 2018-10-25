@@ -5,17 +5,16 @@
 
         <div class="jumbotron text-center">
             <div class="container">
-                <a href="/" class="lang-logo">
-                    <img src="/lang-logo.png">
+                <a href="/" >
+                    <img src="https://www.hostingred.com/wp-content/uploads/2015/09/Cloud-blue-200x200.png">
                 </a>
                 <h1>Weather Information</h1>
-                <p>Please type in a City</p>
-                <input type="text" name="searchCity" id="cityToSearch">
+                <input type="text" name="searchCity" id="cityToSearch" placeholder="Type in a City name">
                 <a type="button" class="btn btn-lg btn-primary" href="" onclick="weatherServices.getDataByCityName()"><span class="glyphicon glyphicon-flash"></span>Get weather Info</a>
             </div>
         </div>
         <div class="container">
-            <div class="alert alert-info text-center" role="alert">
+            <div id="weatherInfo" class="alert alert-info text-center" role="alert">
 
             </div>
             <hr>
@@ -38,22 +37,30 @@
 
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
         <script>
-                var weatherServices = (function () {
-                    
-                    return {
-                        getDataByCityName: function () {
+                    var weatherServices = (function () {
+                        
+                        return {
+                            getDataByCityName: function () {
+
+                                var cityName = document.getElementById('cityToSearch').value;
+                                axios.get("/DataByCity?city=" + cityName)
+                                     .then(function (response) {
+                                            alert(response.data);
+                                });
+
+                            },
+                             getDataByCityName_Test: function (cityName) {
+
+                                axios.get("/DataByCity?city=" + cityName)
+                                     .then(function (response) {
+                                            alert(response.data);
+                                });
+
+                            }
                             
-                            var cityName = document.getElementById('cityToSearch').value;
-                            alert(cityName);
-                            axios.get("/DataByCity?city="+cityName).then(function (response) {
-                                alert("Data received");
-                                console.log(response.data);
-                                
-                            });
-                        }
-                    };
-                }
-                )();
+                        };
+                    }
+                    )();
         </script>    
 
     </body>
