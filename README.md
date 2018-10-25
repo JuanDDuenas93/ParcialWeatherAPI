@@ -1,42 +1,4 @@
-# java-getting-started
+# PARCIAL 2
+Por Juan Daniel Dueñas
 
-[![CircleCI](https://circleci.com/gh/heroku/java-getting-started.svg?style=svg)](https://circleci.com/gh/heroku/java-getting-started)
-
-A barebones Java app, which can easily be deployed to Heroku.
-
-This application supports the [Getting Started with Java on Heroku](https://devcenter.heroku.com/articles/getting-started-with-java) article - check it out.
-
-[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
-
-## Running Locally
-
-Make sure you have Java and Maven installed.  Also, install the [Heroku CLI](https://cli.heroku.com/).
-
-```sh
-$ git clone https://github.com/heroku/java-getting-started.git
-$ cd java-getting-started
-$ mvn install
-$ heroku local:start
-```
-
-Your app should now be running on [localhost:5000](http://localhost:5000/).
-
-If you're going to use a database, ensure you have a local `.env` file that reads something like this:
-
-```
-DATABASE_URL=postgres://localhost:5432/java_database_name
-```
-
-## Deploying to Heroku
-
-```sh
-$ heroku create
-$ git push heroku master
-$ heroku open
-```
-
-## Documentation
-
-For more information about using Java on Heroku, see these Dev Center articles:
-
-- [Java on Heroku](https://devcenter.heroku.com/categories/java)
+La solución propuesta consiste en la implementación de API intermediaria que puede conectarse con cualquier otra API de fuente con tan solo cambiar el key y la url para consumir el API. El request a esta API se hace desde el front end que consta de un campo donde se ingresa la ciudad y un botón para ejecutar la traida de los resultados, para esto, esta información se captura mediante javascript cuando se da clic en el boton con un evento onclick llamando la funcion getDataByCityName del objeto weatherServices en el javascript que se encuentra embebido en el index (ya que hubo problemas mapeando el path colocandolo como un file externo). Una vez capturada la información de la ciudad que se quiere consultar, se envia una petición get al recurso /DataByCity del controller que se encuentra en el Main, esta petición se hace mediante axios para que así una vez se cumppla la promesa (es decir se complete la petición a la API local y la API externa) se pueda devolver la data recibida al front end. Sin embargo, esta parte no quedo funcionando por algun motivo la seccion then en la estructura de axios no se completaba. Si se evalua la funcion getDataByCityName manualmente la cual tiene como paramtro la ciudad que se va a evaluar, se evidencia que si se cumple la promesa, por lo tanto no se evidencia una diferencia de porque no sirve. Adicional a esto, se evidencia que la traida de los resultados es satisfactoria ya que si quita el comentairo a la linea //System.out.println(connectToExternalProvider(urlToExternalAPI+city+"&APPID="+keyAPI)); en el controlador en el handler llamado getDataByCityHandler, se evidencia que se imprimen los resultados de manera satisfactoria; por lo tanto, el paso a seguir era realizar el muestreo de los resultados a consultar en el front end una vez la promesa se cumpliera.
